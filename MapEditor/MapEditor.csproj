@@ -1,0 +1,688 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <GenerateResourceNeverLockTypeAssemblies>true</GenerateResourceNeverLockTypeAssemblies>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9B0F4317-A6AC-4F6E-8ECB-E711175CFB90}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>MapEditor</AssemblyName>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>False</DelaySign>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>MapEditor</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <RunCodeAnalysis>False</RunCodeAnalysis>
+    <SourceAnalysisOverrideSettingsFile>C:\Users\User\AppData\Roaming\ICSharpCode/SharpDevelop4\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
+    <SignAssembly>False</SignAssembly>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>9</ApplicationRevision>
+    <ApplicationVersion>1.2.5.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>False</NoStdLib>
+    <Optimize>False</Optimize>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>False</NoStdLib>
+    <Optimize>True</Optimize>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>AEA5DF02782E86DA2B2C21DD890CD9F4F91AAEF4</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>MapEditor_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\NoxShared.csproj">
+      <Project>{46c56a6c-8c45-4f2b-b7ff-93dd5c61faab}</Project>
+      <Name>NoxShared</Name>
+    </ProjectReference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EditorSettings.Designer.cs">
+      <DependentUpon>EditorSettings.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="GroupDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GroupDialog.Designer.cs">
+      <DependentUpon>GroupDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mapgen\CellularAutomata.cs" />
+    <Compile Include="mapgen\FloodFill.cs" />
+    <Compile Include="mapgen\Generator.cs" />
+    <Compile Include="mapgen\GeneratorConfig.cs" />
+    <Compile Include="mapgen\GeneratorUtil.cs" />
+    <Compile Include="mapgen\IGenerator.cs" />
+    <Compile Include="mapgen\mapsets\CrossroadGenerator.cs" />
+    <Compile Include="mapgen\MapHelper.cs" />
+    <Compile Include="mapgen\mapsets\DungeonGenerator.cs" />
+    <Compile Include="mapgen\populate\Populate.cs" />
+    <Compile Include="MapInt\EditModes.cs" />
+    <Compile Include="MapInt\KeyHelper.cs" />
+    <Compile Include="MapInt\MapInterface.cs" />
+    <Compile Include="MapView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="newgui\BrushSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="newgui\BrushSettings.Designer.cs">
+      <DependentUpon>BrushSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="newgui\EdgeMakeTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="newgui\EdgeMakeTab.Designer.cs">
+      <DependentUpon>EdgeMakeTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="newgui\Saving.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="newgui\Saving.Designer.cs">
+      <DependentUpon>Saving.cs</DependentUpon>
+    </Compile>
+    <Compile Include="newgui\FunctionPropsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="newgui\FunctionPropsDialog.Designer.cs">
+      <DependentUpon>FunctionPropsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="newgui\MapGeneratorDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="newgui\MapGeneratorDlg.Designer.cs">
+      <DependentUpon>MapGeneratorDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="newgui\MapObjectCollection.cs" />
+    <Compile Include="newgui\PolygonEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="newgui\PolygonEditor.Designer.cs">
+      <DependentUpon>PolygonEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="newgui\SettingsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="newgui\SettingsDialog.Designer.cs">
+      <DependentUpon>SettingsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="newgui\StatusbarHelper.cs" />
+    <Compile Include="newgui\SwitchModeButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="newgui\TileMakeTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="newgui\TileMakeTab.Designer.cs">
+      <DependentUpon>TileMakeTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="newgui\WallMakeTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="newgui\WallMakeTab.Designer.cs">
+      <DependentUpon>WallMakeTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="newgui\WallProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="newgui\WallProperties.Designer.cs">
+      <DependentUpon>WallProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectShopEditorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ObjectShopEditorDialog.Designer.cs">
+      <DependentUpon>ObjectShopEditorDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectInventoryDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ObjectListDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ObjectPropertiesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="objgroups\IncludeRule.cs" />
+    <Compile Include="objgroups\ObjectCategory.cs" />
+    <Compile Include="objgroups\XMLCategoryListReader.cs" />
+    <Compile Include="PolygonDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="render\BitmapShader.cs" />
+    <Compile Include="render\MapViewRenderer.cs" />
+    <Compile Include="render\MinimapRenderer.cs" />
+    <Compile Include="render\ObjectRenderer.cs" />
+    <Compile Include="render\ObjectZComparer.cs" />
+    <Compile Include="render\TileRenderer.cs" />
+    <Compile Include="render\videobag\TileEdgeMixer.cs" />
+    <Compile Include="render\videobag\VideoBagCachedProvider.cs" />
+    <Compile Include="render\videobag\VideoBagStream.cs" />
+    <Compile Include="ScriptCompiler\Compiler.cs" />
+    <Compile Include="ScriptCompiler\Properties\AssemblyInfo.cs" />
+    <Compile Include="ScriptDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScriptFunctionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScriptFunctionList.cs" />
+    <Compile Include="SyntaxHighlighter\Properties\AssemblyInfo.cs" />
+    <Compile Include="SyntaxHighlighter\SyntaxRichTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WizardForm\AssemblyInfo.cs" />
+    <Compile Include="WizardForm\WizardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XferGui\BomberSpells.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XferGui\BomberSpells.Designer.cs">
+      <DependentUpon>BomberSpells.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XferGui\ColorLightEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XferGui\ColorLightEdit.Designer.cs">
+      <DependentUpon>ColorLightEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XferGui\DoorProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XferGui\ElevatorEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XferGui\ElevatorEdit.Designer.cs">
+      <DependentUpon>ElevatorEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XferGui\EquipmentEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XferGui\EquipmentEdit.Designer.cs">
+      <DependentUpon>EquipmentEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XferGui\ExitXferEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XferGui\ExitXferEdit.Designer.cs">
+      <DependentUpon>ExitXferEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XferGui\GlyphEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XferGui\GlyphEdit.Designer.cs">
+      <DependentUpon>GlyphEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XferGui\GoldEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XferGui\GoldEdit.Designer.cs">
+      <DependentUpon>GoldEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XferGui\MonsterEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XferGui\MonsterEdit.Designer.cs">
+      <DependentUpon>MonsterEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XferGui\MonsterGenEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XferGui\MonsterGenEdit.Designer.cs">
+      <DependentUpon>MonsterGenEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XferGui\MonsterScriptForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XferGui\MonsterScriptForm.Designer.cs">
+      <DependentUpon>MonsterScriptForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XferGui\MonsterSpellForm.cs">
+      <DependentUpon>MonsterEdit.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XferGui\MonsterSpellForm.Designer.cs">
+      <DependentUpon>MonsterSpellForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XferGui\MoverEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XferGui\MoverEdit.Designer.cs">
+      <DependentUpon>MoverEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XferGui\NPCEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XferGui\NPCEdit.Designer.cs">
+      <DependentUpon>NPCEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XferGui\ObeliskEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XferGui\ObeliskEdit.Designer.cs">
+      <DependentUpon>ObeliskEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XferGui\PitHoleEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XferGui\PitHoleEdit.Designer.cs">
+      <DependentUpon>PitHoleEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XferGui\QuestRewardEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XferGui\QuestRewardEdit.Designer.cs">
+      <DependentUpon>QuestRewardEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XferGui\ReadableEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XferGui\ReadableEdit.Designer.cs">
+      <DependentUpon>ReadableEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XferGui\SentryGlobeEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XferGui\SentryGlobeEdit.Designer.cs">
+      <DependentUpon>SentryGlobeEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XferGui\ShopEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XferGui\ShopEditForm.Designer.cs">
+      <DependentUpon>ShopEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XferGui\KnowledgeRewardEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XferGui\KnowledgeRewardEdit.Designer.cs">
+      <DependentUpon>KnowledgeRewardEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XferGui\StatusCheckList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XferGui\TeleportEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XferGui\TeleportEdit.Designer.cs">
+      <DependentUpon>TeleportEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XferGui\TriggerEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XferGui\TriggerEdit.Designer.cs">
+      <DependentUpon>TriggerEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XferGui\XferEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="newgui\BrushSettings.resx">
+      <DependentUpon>BrushSettings.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="newgui\EdgeMakeTab.resx">
+      <DependentUpon>EdgeMakeTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="newgui\Saving.resx">
+      <DependentUpon>Saving.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="newgui\FunctionPropsDialog.resx">
+      <DependentUpon>FunctionPropsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="newgui\MapGeneratorDlg.resx">
+      <DependentUpon>MapGeneratorDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="newgui\PolygonEditor.resx">
+      <DependentUpon>PolygonEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="newgui\SettingsDialog.resx">
+      <DependentUpon>SettingsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="newgui\TileMakeTab.resx">
+      <DependentUpon>TileMakeTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="newgui\WallMakeTab.resx">
+      <DependentUpon>WallMakeTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="newgui\WallProperties.resx">
+      <DependentUpon>WallProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Splash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Splash.Designer.cs">
+      <DependentUpon>Splash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateList.Designer.cs">
+      <DependentUpon>UpdateList.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AboutDialog.resx">
+      <DependentUpon>AboutDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GroupDialog.resx">
+      <DependentUpon>GroupDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapView.resx">
+      <DependentUpon>MapView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjectInventoryDialog.resx">
+      <DependentUpon>ObjectInventoryDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjectListDialog.resx">
+      <DependentUpon>ObjectListDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjectPropertiesDialog.resx">
+      <DependentUpon>ObjectPropertiesDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PolygonDialog.resx">
+      <DependentUpon>PolygonDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptDialog.ko.resx">
+      <DependentUpon>ScriptDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptDialog.nl.resx">
+      <DependentUpon>ScriptDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptDialog.resx">
+      <DependentUpon>ScriptDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptFunctionDialog.ko.resx">
+      <DependentUpon>ScriptFunctionDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptFunctionDialog.resx">
+      <DependentUpon>ScriptFunctionDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WizardForm\WizardForm.en-GB.resx">
+      <DependentUpon>WizardForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WizardForm\WizardForm.en.resx">
+      <DependentUpon>WizardForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WizardForm\WizardForm.resx">
+      <DependentUpon>WizardForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XferGui\BomberSpells.resx">
+      <DependentUpon>BomberSpells.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XferGui\ColorLightEdit.resx">
+      <DependentUpon>ColorLightEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XferGui\DoorProperties.resx">
+      <DependentUpon>DoorProperties.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XferGui\ElevatorEdit.resx">
+      <DependentUpon>ElevatorEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XferGui\EquipmentEdit.resx">
+      <DependentUpon>EquipmentEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XferGui\ExitXferEdit.resx">
+      <DependentUpon>ExitXferEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XferGui\GlyphEdit.resx">
+      <DependentUpon>GlyphEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XferGui\GoldEdit.resx">
+      <DependentUpon>GoldEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XferGui\MonsterEdit.resx">
+      <DependentUpon>MonsterEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XferGui\MonsterGenEdit.resx">
+      <DependentUpon>MonsterGenEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XferGui\MonsterScriptForm.resx">
+      <DependentUpon>MonsterScriptForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XferGui\MonsterSpellForm.resx">
+      <DependentUpon>MonsterSpellForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XferGui\MoverEdit.resx">
+      <DependentUpon>MoverEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XferGui\NPCEdit.resx">
+      <DependentUpon>NPCEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XferGui\ObeliskEdit.resx">
+      <DependentUpon>ObeliskEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XferGui\PitHoleEdit.resx">
+      <DependentUpon>PitHoleEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XferGui\QuestRewardEdit.resx">
+      <DependentUpon>QuestRewardEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XferGui\ReadableEdit.resx">
+      <DependentUpon>ReadableEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XferGui\SentryGlobeEdit.resx">
+      <DependentUpon>SentryGlobeEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XferGui\ShopEditForm.resx">
+      <DependentUpon>ShopEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XferGui\KnowledgeRewardEdit.resx">
+      <DependentUpon>KnowledgeRewardEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XferGui\TeleportEdit.resx">
+      <DependentUpon>TeleportEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XferGui\TriggerEdit.resx">
+      <DependentUpon>TriggerEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <AppDesigner Include="Properties\" />
+    <EmbeddedResource Include="bundled\BlankMap.map" />
+    <EmbeddedResource Include="XferGui\XferEditor.resx">
+      <DependentUpon>XferEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="EditorSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>EditorSettings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="MapEditor_TemporaryKey.pfx" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ScriptCompiler\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="SyntaxHighlighter\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="WizardForm\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="images\teleport.ico" />
+    <EmbeddedResource Include="ObjectShopEditorDialog.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ObjectShopEditorDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Splash.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Splash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateList.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UpdateList.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\picker.cur" />
+    <Content Include="icon.ico" />
+    <None Include="Resources\LineWall.png" />
+    <Content Include="ScriptCompiler\ScriptCompiler.csproj" />
+    <Content Include="SyntaxHighlighter\SyntaxHighlighter.csproj" />
+    <Content Include="WizardForm\WizardForm.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ScriptCompiler\bin\Debug\" />
+    <Folder Include="ScriptCompiler\obj\Debug\TempPE\" />
+    <Folder Include="SyntaxHighlighter\bin\Debug\" />
+    <Folder Include="SyntaxHighlighter\obj\Debug\TempPE\" />
+    <Folder Include="WizardForm\bin\Debug\" />
+    <Folder Include="WizardForm\obj\Debug\TempPE\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if exist "$(TargetPath)0" move "$(TargetPath)0" "$(TargetPath)1"
+xcopy "$(ProjectDir)bundled\*" "$(ProjectDir)$(OutDir)" /E /Y
+</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <StartAction>Project</StartAction>
+    <StartArguments>G:\VW\Nox\maps\con08b\con08b.map</StartArguments>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
+    <DebugType>Full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
+    <StartAction>Project</StartAction>
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugType>None</DebugType>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+</Project>
