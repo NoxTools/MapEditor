@@ -60,9 +60,13 @@ namespace NoxShared
 			{
 				private byte[] header = {0x52, 0x49, 0x46, 0x46, 0x00, 0x00, 0x00, 0x00, 0x57, 0x41, 0x56, 0x45, 0x66, 0x6d, 0x74, 0x20, 0x14, 0x00, 0x00, 0x00, 0x11, 0x00, 0x01, 0x00, 0x22, 0x56, 0x00, 0x00, 0x5c, 0x2b, 0x00, 0x00, 0x00, 0x02, 0x04, 0x00, 0x02, 0x00, 0xf9, 0x03, 0x66, 0x61, 0x63, 0x74, 0x04, 0x00, 0x00, 0x00, 0xa7, 0x5e, 0x00, 0x00, 0x64, 0x61, 0x74, 0x61, 0x00, 0x00, 0x00, 0x00};
 				protected uint length;
-				public Header(uint length)
+                protected uint samplerate;
+                protected uint channels;
+				public Header(uint length, uint samplerate, uint channels)
 				{
 					this.length = length;
+                    this.samplerate = samplerate;
+                    this.channels = channels;
 				}
 
 				public void Write(Stream stream)
@@ -72,6 +76,22 @@ namespace NoxShared
 					wtr.Write(header);
 					wtr.BaseStream.Seek(0x04, SeekOrigin.Begin);
 					wtr.Write((uint) header.Length-8 + length);
+                    wtr.BaseStream.Seek(0x18, SeekOrigin.Begin);
+                    wtr.Write(samplerate);
+                    if (samplerate == 44100)
+                    {
+                        // change the block align
+                        wtr.BaseStream.Seek(0x20, SeekOrigin.Begin);
+                        wtr.Write((UInt16)1024);
+                    }
+                    if (channels == 2)
+                    {
+                        wtr.BaseStream.Seek(0x16, SeekOrigin.Begin);
+                        wtr.Write((UInt16)2);
+                        // change the block align
+                        wtr.BaseStream.Seek(0x20, SeekOrigin.Begin);
+                        wtr.Write((UInt16)1024);
+                    }
 					wtr.BaseStream.Seek(0x38, SeekOrigin.Begin);
 					wtr.Write((uint) length);
 				}
@@ -88,7 +108,7 @@ namespace NoxShared
 			public void Read(Entry entry, Stream bagStream)
 			{
 				BinaryReader rdr = new BinaryReader(bagStream);
-				header = new Header(entry.Length);
+				header = new Header(entry.Length, entry.SampleRate, (uint)(entry.Flags & 1) + 1);
 				rdr.BaseStream.Seek(entry.Offset, SeekOrigin.Begin);
 				data = rdr.ReadBytes((int) entry.Length);
 			}
