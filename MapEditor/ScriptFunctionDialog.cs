@@ -378,7 +378,6 @@ namespace MapEditor
         private Label label3;
         private SyntaxRichTextBox scriptBox;
         private ListBox listMethods;
-        int varNumber = 0;
         public List<String> ScriptStrings
         {
             get

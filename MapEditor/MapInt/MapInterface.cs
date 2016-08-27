@@ -1810,7 +1810,6 @@ namespace MapEditor.MapInt
         public static PointF PolyPointSnap(Point pt)
         {
             double closestDistance = Double.MaxValue;
-            int i = 0;
             int page = MainWindow.Instance.tabControl1.SelectedIndex;
             Map.Polygon SelectedPolygon = MainWindow.Instance.mapView.PolygonEditDlg.SelectedPolygon;
             double selRadius = (page == 1 ? 100 : 200);

@@ -28,7 +28,6 @@ namespace MapEditor.mapgen
         private string[] tileMaterialNames = ThingDb.FloorTileNames.ToArray();
         private string[] edgeMaterialNames = ThingDb.EdgeTileNames.ToArray();
         private List<Point> tilesScanned = new List<Point>();
-        private readonly MapView mapView;
         private int autoedgeIgnoreTile = -1;
         private byte usingWallMaterial = 0;
         public byte usingTileMaterial = 0;
