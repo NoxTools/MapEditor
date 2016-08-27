@@ -2556,7 +2556,7 @@ namespace NoxShared
             WriteWindowWalls(wtr);
 
             Groups.Write(wtr.BaseStream);
-            WriteScriptObject(wtr);
+            WriteScriptObjectSection(wtr);
 
             Ambient.Write(wtr.BaseStream);
             Polygons.Write(wtr.BaseStream);
@@ -2722,7 +2722,7 @@ namespace NoxShared
             wtr.Seek(0, SeekOrigin.End);
         }
 
-        private void WriteScriptObject(NoxBinaryWriter wtr)
+        private void WriteScriptObjectSection(NoxBinaryWriter wtr)
         {
             string str = "ScriptObject";
             OldSectHeader hed = (OldSectHeader)Headers[str];
@@ -2739,6 +2739,27 @@ namespace NoxShared
             long secpos;
             secpos = wtr.BaseStream.Position;
             wtr.Write(sectlen);
+
+            WriteScriptObject(wtr);
+
+            /* Shouldn't be anything left over
+			if(Scripts.rest != null)
+				wtr.Write(Scripts.rest); // write rest of the section*/
+            // rewrite section length
+            sectlen = (int)(wtr.BaseStream.Position - (secpos + 4));
+            wtr.Seek((int)secpos, SeekOrigin.Begin);
+            wtr.Write(sectlen);
+            wtr.Seek(0, SeekOrigin.End);
+
+            //rewrite the length
+            length = wtr.BaseStream.Position - (pos + 8);
+            wtr.Seek((int)pos, SeekOrigin.Begin);
+            wtr.Write(length);
+            wtr.Seek(0, SeekOrigin.End);
+        }
+
+        public void WriteScriptObject(NoxBinaryWriter wtr)
+        {
             if (Scripts.SctStr.Count != 0 || Scripts.Funcs.Count != 0)
             {
                 // if there is a strings section
@@ -2769,20 +2790,6 @@ namespace NoxShared
                 }
                 wtr.Write("DONE".ToCharArray());
             }
-            /* Shouldn't be anything left over
-			if(Scripts.rest != null)
-				wtr.Write(Scripts.rest); // write rest of the section*/
-            // rewrite section length
-            sectlen = (int)(wtr.BaseStream.Position - (secpos + 4));
-            wtr.Seek((int)secpos, SeekOrigin.Begin);
-            wtr.Write(sectlen);
-            wtr.Seek(0, SeekOrigin.End);
-
-            //rewrite the length
-            length = wtr.BaseStream.Position - (pos + 8);
-            wtr.Seek((int)pos, SeekOrigin.Begin);
-            wtr.Write(length);
-            wtr.Seek(0, SeekOrigin.End);
         }
         #endregion
     }

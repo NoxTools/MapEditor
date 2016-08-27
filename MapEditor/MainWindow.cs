@@ -2803,24 +2803,99 @@ namespace MapEditor
             }
         }
 
-        private void menuItemExportScript_Click(object sender, EventArgs e)
+        private Process nsdc = null;
+        private void menuItemExportScript_Click(object sender, EventArgs evt)
         {
             SaveFileDialog fd = new SaveFileDialog();
             fd.Filter = "Nox Script Source (*.ns)|*.ns";
 
-            if (map.Scripts.SctStr.Count == 0 || !map.Scripts.SctStr[0].StartsWith("NOXSCRIPT3.0"))
+            if (map.Scripts.SctStr.Count > 0 && map.Scripts.SctStr[0].StartsWith("NOXSCRIPT3.0"))
             {
-                MessageBox.Show("Invalid Nox Script header.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // we already have script code, just save it
+                if (fd.ShowDialog() == DialogResult.OK)
+                {
+                    File.WriteAllText(fd.FileName, map.Scripts.SctStr[0].Substring(12));
+                }
+            }
+            else
+            {
+                if (nsdc != null)
+                {
+                    MessageBox.Show("Decompiler is running. Please wait and try again.");
+                    return;
+                }
+
+                MessageBox.Show("Nox Script header not found, attempting to decompile.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                string tmp = Path.GetTempFileName();
+                NoxBinaryWriter wtr = new NoxBinaryWriter(new FileStream(tmp, FileMode.Create), CryptApi.NoxCryptFormat.NONE);
+                map.WriteScriptObject(wtr);
+                wtr.Close();
+
+                string tmp2 = Path.GetTempFileName();
+                Func<string, string> escape = (string s) =>
+                {
+                    return "\"" + System.Text.RegularExpressions.Regex.Replace(s, @"(\\+)$", @"$1$1") + "\"";
+                };
+                nsdc = new Process();
+                nsdc.StartInfo.WorkingDirectory = Path.Combine(Application.StartupPath, "noxscript");
+                nsdc.StartInfo.FileName = Path.Combine(nsdc.StartInfo.WorkingDirectory, "nsdc.exe");
+                nsdc.StartInfo.Arguments = String.Format("-o {0} {1}", escape(tmp2), escape(tmp));
+                nsdc.StartInfo.RedirectStandardError = true;
+                nsdc.StartInfo.RedirectStandardOutput = true;
+                nsdc.StartInfo.UseShellExecute = false;
+                nsdc.EnableRaisingEvents = true;
+                nsdc.Exited += (sender_, args) =>
+                {
+                    this.BeginInvoke((Action) delegate()
+                    {
+                        try
+                        {
+                            if (fd.ShowDialog() == DialogResult.OK)
+                            {
+                                File.Delete(fd.FileName);
+                                File.Copy(tmp2, fd.FileName);
+                                StreamWriter sw = new StreamWriter(fd.FileName, true);
+                                while (true)
+                                {
+                                    string line = nsdc.StandardError.ReadLine();
+                                    if (line == null)
+                                        break;
+                                    sw.WriteLine("// " + line);
+                                }
+                                while (true)
+                                {
+                                    string line = nsdc.StandardOutput.ReadLine();
+                                    if (line == null)
+                                        break;
+                                    sw.WriteLine("// " + line);
+                                }
+                                sw.Close();
+                            }
+                        }
+                        finally
+                        {
+                            File.Delete(tmp);
+                            File.Delete(tmp2);
+                            nsdc.Dispose();
+                            nsdc = null;
+                        }
+
+                    });
+                };
+                try
+                {
+                    nsdc.Start();
+                }
+                catch (System.ComponentModel.Win32Exception e)
+                {
+                    MessageBox.Show("Error trying to run decompiler: " + e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    File.Delete(tmp);
+                    File.Delete(tmp2);
+                    nsdc.Dispose();
+                }
                 return;
             }
-
-            if (fd.ShowDialog() == DialogResult.OK)
-            {
-                File.WriteAllText(fd.FileName, map.Scripts.SctStr[0].Substring(12));
-            }
         }
-
-
-
     }
 }
