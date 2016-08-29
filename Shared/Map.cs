@@ -2487,24 +2487,29 @@ namespace NoxShared
             Debug.Assert(rdr.BaseStream.Position == finish, "NoxMap (SecretWalls) ERROR: bad section length");
         }
 
+        private bool ReadToken(NoxBinaryReader rdr, string token)
+        {
+            return new string(rdr.ReadChars(token.Length)) == token;
+        }
+
         public void ReadScriptObject(NoxBinaryReader rdr)
         {
             Scripts = new ScriptObject();
             Scripts.SctStr = new List<String>();
 
-            if (new string(rdr.ReadChars(12)) == "SCRIPT03STRG")
+            if (ReadToken(rdr, "SCRIPT03STRG"))
             {
                 int numStr = rdr.ReadInt32();
                 for (int i = 0; i < numStr; i++)
-                    Scripts.SctStr.Add(new string(rdr.ReadChars(rdr.ReadInt32())));
-                if (new string(rdr.ReadChars(4)) == "CODE")
+                    Scripts.SctStr.Add(Encoding.UTF8.GetString(rdr.ReadBytes(rdr.ReadInt32())));
+                if (ReadToken(rdr, "CODE"))
                 {
                     Scripts.Funcs = new List<ScriptFunction>(rdr.ReadInt32());
-                    while (new string(rdr.ReadChars(4)) == "FUNC")
+                    while (ReadToken(rdr, "FUNC"))
                     {
                         ScriptFunction func = new ScriptFunction();
                         Scripts.Funcs.Add(func);
-                        func.name = new string(rdr.ReadChars(rdr.ReadInt32()));
+                        func.name = Encoding.UTF8.GetString(rdr.ReadBytes(rdr.ReadInt32()));
                         func.retval = rdr.ReadInt32() == 1;
                         func.args = rdr.ReadInt32();
                         rdr.ReadInt32(); // SYMB
@@ -2768,16 +2773,18 @@ namespace NoxShared
                 wtr.Write(Scripts.SctStr.Count); // write number of strings
                 foreach (String s in Scripts.SctStr) // write each string
                 {
-                    wtr.Write(s.Length);
-                    wtr.Write(s.ToCharArray());
+                    byte[] tmp = Encoding.UTF8.GetBytes(s);
+                    wtr.Write(tmp.Length);
+                    wtr.Write(tmp);
                 }
                 wtr.Write("CODE".ToCharArray());
                 wtr.Write(Scripts.Funcs.Count);
                 foreach (ScriptFunction sf in Scripts.Funcs)
                 {
+                    byte[] tmp = Encoding.UTF8.GetBytes(sf.name);
                     wtr.Write("FUNC".ToCharArray());
-                    wtr.Write(sf.name.Length);
-                    wtr.Write(sf.name.ToCharArray());
+                    wtr.Write(tmp.Length);
+                    wtr.Write(tmp);
                     wtr.Write(sf.retval ? 1 : 0);
                     wtr.Write(sf.args);
                     wtr.Write("SYMB".ToCharArray());

@@ -28,7 +28,7 @@ namespace NoxShared.ObjDataXfer
 			Text = "";
 			BinaryReader br = new BinaryReader(mstream);
 			int len = br.ReadInt32();
-			Text = Encoding.ASCII.GetString(br.ReadBytes(len));
+			Text = Encoding.UTF8.GetString(br.ReadBytes(len));
 			Text = Text.TrimEnd('\0');
 			return true;
 		}
@@ -36,9 +36,16 @@ namespace NoxShared.ObjDataXfer
 		public override void WriteToStream(Stream mstream, short ParsingRule, ThingDb.Thing thing)
 		{
 			BinaryWriter bw = new BinaryWriter(mstream);
-			if (!Text.EndsWith("\0")) Text += '\0';
-			bw.Write((int) Text.Length);
-			bw.Write(Encoding.ASCII.GetBytes(Text));
+            byte[] bytes = Encoding.UTF8.GetBytes(Text);
+            if (bytes.Length == 0 || bytes[bytes.Length - 1] != 0)
+            {
+                byte [] tmp = new byte[bytes.Length + 1];
+                bytes.CopyTo(tmp, 0);
+                tmp[bytes.Length] = 0;
+                bytes = tmp;
+            }
+            bw.Write(bytes.Length);
+            bw.Write(bytes);
 		}
 	}
 }
